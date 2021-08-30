@@ -45,8 +45,20 @@
         <Grid Grid.Row="1"
               Grid.Column="0">
             <TextBlock HorizontalAlignment="Center" Height="54" Margin="0,352,0,0" Text="$0.00" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" Foreground="White" FontSize="50" FontFamily="Fonts/#Quicksand" TextAlignment="Center" Name="TotalText" />
-            <Button Content="Right" HorizontalAlignment="Center" Margin="0,490,0,0" VerticalAlignment="Top" Height="80" Width="180" Click="Button_Click_Right"/>
-            <Button Content="Left" HorizontalAlignment="Center" Margin="0,638,0,0" VerticalAlignment="Top" Height="80" Width="180" Click="Button_Click_Left"/>
+            <Button Content="RIGHT" HorizontalAlignment="Center" Margin="0,490,0,0" VerticalAlignment="Top" Height="80" Width="180" Click="Button_Click_Right" Foreground="White" Background="#18020C" FontFamily="Fonts/#Quicksand" FontSize="25">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button Content="LEFT" HorizontalAlignment="Center" Margin="0,638,0,0" VerticalAlignment="Top" Height="80" Width="180" Click="Button_Click_Left" Foreground="White" Background="#18020C" FontFamily="Fonts/#Quicksand" FontSize="25">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20"/>
+                </Style>
+            </Button.Resources>
+            </Button>
 
         </Grid>
 
