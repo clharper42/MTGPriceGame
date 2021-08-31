@@ -44,6 +44,52 @@
 
         <Grid Grid.Row="1"
               Grid.Column="0">
+
+            <Label Content="$0.00" Foreground="Green" FontSize="50" FontFamily="Fonts/#Quicksand" HorizontalContentAlignment="Center" Margin="0,277,0,0" VerticalAlignment="Top" Width="380" Name="lbl" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Visibility="Hidden">
+                <Label.Style>
+                    <Style TargetType="{x:Type Label}">
+                        <Style.Triggers>
+                            <Trigger Property="Visibility" Value="Visible">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:00" BeginTime="00:00:00" From="0.0" To="1.0" />
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:01" BeginTime="00:00:01" From="1.0" To="0.0" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+
+            <Label Content="$0.00" Foreground="Red" FontSize="50" FontFamily="Fonts/#Quicksand" HorizontalContentAlignment="Center" Margin="0,412,0,0" VerticalAlignment="Top" Width="380" Name="lblr" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Visibility="Hidden">
+                <Label.Style>
+                    <Style TargetType="{x:Type Label}">
+                        <Style.Triggers>
+                            <Trigger Property="Visibility" Value="Visible">
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:00" BeginTime="00:00:00" From="0.0" To="1.0" />
+                                            <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:01" BeginTime="00:00:01" From="1.0" To="0.0" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+
+
+
+
+
+
+
+
             <TextBlock HorizontalAlignment="Center" Height="54" Margin="0,352,0,0" Text="$0.00" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" Foreground="White" FontSize="50" FontFamily="Fonts/#Quicksand" TextAlignment="Center" Name="TotalText" />
             <Button Content="RIGHT" HorizontalAlignment="Center" Margin="0,490,0,0" VerticalAlignment="Top" Height="80" Width="180" Click="Button_Click_Right" Foreground="White" Background="#18020C" FontFamily="Fonts/#Quicksand" FontSize="25">
                 <Button.Resources>
@@ -53,13 +99,12 @@
                 </Button.Resources>
             </Button>
             <Button Content="LEFT" HorizontalAlignment="Center" Margin="0,638,0,0" VerticalAlignment="Top" Height="80" Width="180" Click="Button_Click_Left" Foreground="White" Background="#18020C" FontFamily="Fonts/#Quicksand" FontSize="25">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="20"/>
-                </Style>
-            </Button.Resources>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"/>
+                    </Style>
+                </Button.Resources>
             </Button>
-
         </Grid>
 
         <Grid Grid.Column="2"

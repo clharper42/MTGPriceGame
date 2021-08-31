@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace MTGPriceGame
 {
@@ -20,19 +21,41 @@ namespace MTGPriceGame
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        DispatcherTimer t = new DispatcherTimer();
+        DispatcherTimer tr = new DispatcherTimer();
+
         public MainWindow()
         {
             Program.Start();
             InitializeComponent();
             Set_Images();
+
+            //Set the timer interval to the length of the animation.
+            t.Interval = new TimeSpan(0, 0, 3);
+            t.Tick += (EventHandler)delegate (object snd, EventArgs ea)
+            {
+                // The animation will be over now, collapse the label.
+                lbl.Visibility = Visibility.Collapsed;
+                // Get rid of the timer.
+                ((DispatcherTimer)snd).Stop();
+            };
+
+            tr.Interval = new TimeSpan(0, 0, 3);
+            tr.Tick += (EventHandler)delegate (object snd, EventArgs ea)
+            {
+                // The animation will be over now, collapse the label.
+                lblr.Visibility = Visibility.Collapsed;
+                // Get rid of the timer.
+                ((DispatcherTimer)snd).Stop();
+            };
+
         }
 
         private void Set_Images()
         {
             Card cardone = Program.cards[0];
             Card cardtwo = Program.cards[1];
-
-            string test = cardone.image_uris.normal;
 
             CardImg1.Source = null;
             CardImg1F1.Source = null;
@@ -90,10 +113,21 @@ namespace MTGPriceGame
             if(cardoneprice > cardtwoprices)
             {
                 TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardoneprice, 2)).ToString();
+
+                lbl.Content = "$" + cardoneprice.ToString();
+
+                lbl.Visibility = Visibility.Visible;
+                t.Start();
             }
             else
             {
                 TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardtwoprices, 2)).ToString();
+
+                lblr.Content = "$" + cardtwoprices.ToString();
+
+                lblr.Visibility = Visibility.Visible;
+                tr.Start();
+
             }
 
             Program.Get_Cards();
@@ -112,10 +146,20 @@ namespace MTGPriceGame
             if (cardtwoprices > cardoneprice)
             {
                 TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardtwoprices, 2)).ToString();
+
+                lbl.Content = "$" + cardtwoprices.ToString();
+
+                lbl.Visibility = Visibility.Visible;
+                t.Start();
             }
             else
             {
                 TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardoneprice, 2)).ToString();
+
+                lblr.Content = "$" + cardoneprice.ToString();
+
+                lblr.Visibility = Visibility.Visible;
+                tr.Start();
             }
 
             Program.Get_Cards();
