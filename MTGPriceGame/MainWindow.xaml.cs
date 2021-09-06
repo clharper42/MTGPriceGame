@@ -112,18 +112,22 @@ namespace MTGPriceGame
 
             if(cardoneprice > cardtwoprices)
             {
-                TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardoneprice, 2)).ToString();
+                //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardoneprice, 2)).ToString();
+                TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardoneprice, 2));
 
-                lbl.Content = "$" + cardoneprice.ToString();
+                //lbl.Content = "$" + cardoneprice.ToString();
+                lbl.Content = "$" + string.Format("{0:f2}", cardoneprice);
 
                 lbl.Visibility = Visibility.Visible;
                 t.Start();
             }
             else
             {
-                TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardtwoprices, 2)).ToString();
+                //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardtwoprices, 2)).ToString();
+                TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardtwoprices, 2));
 
-                lblr.Content = "$" + cardtwoprices.ToString();
+                //lblr.Content = "$" + cardtwoprices.ToString();
+                lblr.Content = "$" + string.Format("{0:f2}", cardtwoprices);
 
                 lblr.Visibility = Visibility.Visible;
                 tr.Start();
@@ -145,18 +149,22 @@ namespace MTGPriceGame
 
             if (cardtwoprices > cardoneprice)
             {
-                TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardtwoprices, 2)).ToString();
+                //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardtwoprices, 2)).ToString();
+                TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardtwoprices, 2));
 
-                lbl.Content = "$" + cardtwoprices.ToString();
+                //lbl.Content = "$" + cardtwoprices.ToString();
+                lbl.Content = "$" + string.Format("{0:f2}", cardtwoprices);
 
                 lbl.Visibility = Visibility.Visible;
                 t.Start();
             }
             else
             {
-                TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardoneprice, 2)).ToString();
+                //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardoneprice, 2)).ToString();
+                TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardoneprice, 2));
 
-                lblr.Content = "$" + cardoneprice.ToString();
+                //lblr.Content = "$" + cardoneprice.ToString();
+                lblr.Content = "$" + string.Format("{0:f2}", cardoneprice);
 
                 lblr.Visibility = Visibility.Visible;
                 tr.Start();
