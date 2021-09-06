@@ -9,7 +9,7 @@ namespace MTGPriceGame
 {
     static class Program
     {
-        private const string URL = "https://api.scryfall.com/cards/random";
+        private const string URL = "https://api.scryfall.com/cards/random?q=game%3Apaper";
         private static HttpClient client = new HttpClient();
         private static HttpResponseMessage response;
         public static List<Card> cards = new List<Card>();
