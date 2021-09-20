@@ -27,9 +27,16 @@ namespace MTGPriceGame
 
         public MainWindow()
         {
+
             Program.Start();
             InitializeComponent();
             Set_Images();
+
+            ColorFilter.ItemsSource = Program.colorfilters;
+            ColorFilter.SelectedItem = Program.colorfilters[0];
+
+            TypeFilter.ItemsSource = Program.typefilters;
+            TypeFilter.SelectedItem = Program.typefilters[0];
 
             //Set the timer interval to the length of the animation.
             t.Interval = new TimeSpan(0, 0, 3);
@@ -104,75 +111,223 @@ namespace MTGPriceGame
 
         private void Button_Click_Right(object sender, RoutedEventArgs e)
         {
-            Card cardone = Program.cards[0];
-            double cardoneprice = Convert.ToDouble(cardone.prices.usd);
-
-            Card cardtwo = Program.cards[1];
-            double cardtwoprices = Convert.ToDouble(cardtwo.prices.usd);
-
-            if(cardoneprice > cardtwoprices)
+            if(Program.cards.Count != 0 )
             {
-                //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardoneprice, 2)).ToString();
-                TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardoneprice, 2));
+                Card cardone = Program.cards[0];
+                double cardoneprice = Convert.ToDouble(cardone.prices.usd);
 
-                //lbl.Content = "$" + cardoneprice.ToString();
-                lbl.Content = "$" + string.Format("{0:f2}", cardoneprice);
+                Card cardtwo = Program.cards[1];
+                double cardtwoprices = Convert.ToDouble(cardtwo.prices.usd);
 
-                lbl.Visibility = Visibility.Visible;
-                t.Start();
+                if (cardoneprice > cardtwoprices)
+                {
+                    //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardoneprice, 2)).ToString();
+                    TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardoneprice, 2));
+
+                    //lbl.Content = "$" + cardoneprice.ToString();
+                    lbl.Content = "$" + string.Format("{0:f2}", cardoneprice);
+
+                    lbl.Visibility = Visibility.Visible;
+                    t.Start();
+                }
+                else if (cardoneprice < cardtwoprices)
+                {
+                    //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardtwoprices, 2)).ToString();
+                    TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardtwoprices, 2));
+
+                    //lblr.Content = "$" + cardtwoprices.ToString();
+                    lblr.Content = "$" + string.Format("{0:f2}", cardtwoprices);
+
+                    lblr.Visibility = Visibility.Visible;
+                    tr.Start();
+
+                }
+                else
+                {
+                    lbl.Content = "$0.00";
+
+                    lbl.Visibility = Visibility.Visible;
+                    t.Start();
+                }
+            }
+
+            bool suc = Program.Get_Cards();
+            if(!suc)
+            {
+                CardImg1.Source = null;
+                CardImg1F1.Source = null;
+                CardImg1F2.Source = null;
+
+                CardImg2.Source = null;
+                CardImg2F1.Source = null;
+                CardImg2F2.Source = null;
             }
             else
             {
-                //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardtwoprices, 2)).ToString();
-                TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardtwoprices, 2));
-
-                //lblr.Content = "$" + cardtwoprices.ToString();
-                lblr.Content = "$" + string.Format("{0:f2}", cardtwoprices);
-
-                lblr.Visibility = Visibility.Visible;
-                tr.Start();
-
+                Set_Images();
             }
-
-            Program.Get_Cards();
-            Set_Images();
 
         }
 
         private void Button_Click_Left(object sender, RoutedEventArgs e)
         {
-            Card cardone = Program.cards[0];
-            double cardoneprice = Convert.ToDouble(cardone.prices.usd);
-
-            Card cardtwo = Program.cards[1];
-            double cardtwoprices = Convert.ToDouble(cardtwo.prices.usd);
-
-            if (cardtwoprices > cardoneprice)
+            if(Program.cards.Count != 0)
             {
-                //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardtwoprices, 2)).ToString();
-                TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardtwoprices, 2));
+                Card cardone = Program.cards[0];
+                double cardoneprice = Convert.ToDouble(cardone.prices.usd);
 
-                //lbl.Content = "$" + cardtwoprices.ToString();
-                lbl.Content = "$" + string.Format("{0:f2}", cardtwoprices);
+                Card cardtwo = Program.cards[1];
+                double cardtwoprices = Convert.ToDouble(cardtwo.prices.usd);
 
-                lbl.Visibility = Visibility.Visible;
-                t.Start();
+                if (cardtwoprices > cardoneprice)
+                {
+                    //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardtwoprices, 2)).ToString();
+                    TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) + cardtwoprices, 2));
+
+                    //lbl.Content = "$" + cardtwoprices.ToString();
+                    lbl.Content = "$" + string.Format("{0:f2}", cardtwoprices);
+
+                    lbl.Visibility = Visibility.Visible;
+                    t.Start();
+                }
+                else if(cardtwoprices < cardoneprice)
+                {
+                    //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardoneprice, 2)).ToString();
+                    TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardoneprice, 2));
+
+                    //lblr.Content = "$" + cardoneprice.ToString();
+                    lblr.Content = "$" + string.Format("{0:f2}", cardoneprice);
+
+                    lblr.Visibility = Visibility.Visible;
+                    tr.Start();
+                }
+                else
+                {
+                    lbl.Content = "$0.00";
+
+                    lbl.Visibility = Visibility.Visible;
+                    t.Start();
+                }
+            }
+
+            bool suc = Program.Get_Cards();
+            if(!suc)
+            {
+                CardImg1.Source = null;
+                CardImg1F1.Source = null;
+                CardImg1F2.Source = null;
+
+                CardImg2.Source = null;
+                CardImg2F1.Source = null;
+                CardImg2F2.Source = null;
             }
             else
             {
-                //TotalText.Text = "$" + (Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardoneprice, 2)).ToString();
-                TotalText.Text = "$" + string.Format("{0:f2}", Math.Round(Convert.ToDouble(TotalText.Text.Substring(1)) - cardoneprice, 2));
-
-                //lblr.Content = "$" + cardoneprice.ToString();
-                lblr.Content = "$" + string.Format("{0:f2}", cardoneprice);
-
-                lblr.Visibility = Visibility.Visible;
-                tr.Start();
+                Set_Images();
             }
 
-            Program.Get_Cards();
-            Set_Images();
+        }
 
+        private void W_CheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color + "W";
+        }
+
+        private void W_UncheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color.Replace("W", "");
+        }
+        private void U_CheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color + "U";
+        }
+
+        private void U_UncheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color.Replace("U", "");
+        }
+
+        private void B_CheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color + "B";
+        }
+
+        private void B_UncheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color.Replace("B", "");
+        }
+        private void R_CheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color + "R";
+        }
+
+        private void R_UncheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color.Replace("R", "");
+        }
+        private void G_CheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color + "G";
+        }
+
+        private void G_UncheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color.Replace("G", "");
+        }
+
+        private void C_CheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color + "C";
+        }
+
+        private void C_UncheckedEvent(object sender, RoutedEventArgs e)
+        {
+            Program.Color = Program.Color.Replace("C", "");
+        }
+
+        private void ColorFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count != 0)
+            {
+                string filter = (e.AddedItems[0] as string);
+                if (filter.Equals(Program.colorfilters[0]))
+                {
+                    Program.ColorFilter = "+color%3D";
+                }
+                else if(filter.Equals(Program.colorfilters[1]))
+                {
+                    Program.ColorFilter = "+color>%3D";
+                }
+                else
+                {
+                    Program.ColorFilter = "+color<%3D";
+                }
+            }
+ 
+        }
+
+        private void TypeFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count != 0)
+            {
+                string filter = (e.AddedItems[0] as string);
+                if (!filter.Equals(Program.typefilters[0]))
+                {
+                   if(filter.Equals(Program.typefilters[1]))
+                   {
+                       Program.Selectedtype = Program.Typefilter + Program.typefilters[2].ToLower() + Program.Selectedtypeleg;
+                   }
+                   else
+                   {
+                        Program.Selectedtype = Program.Typefilter + filter.ToLower();
+                   }
+                }
+                else
+                {
+                    Program.Selectedtype = "";
+                }
+                
+            }
         }
     }
 }

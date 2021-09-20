@@ -105,6 +105,14 @@
                     </Style>
                 </Button.Resources>
             </Button>
+            <CheckBox Content="W" HorizontalAlignment="Left" Margin="144,190,0,0" VerticalAlignment="Top" FontFamily="Fonts/#Quicksand" Foreground="White" Checked="W_CheckedEvent" Unchecked="W_UncheckedEvent" Name="WBox" Visibility="Visible"/>
+            <CheckBox Content="U" HorizontalAlignment="Left" Margin="180,190,0,0" VerticalAlignment="Top" FontFamily="Fonts/#Quicksand" Foreground="White" Checked="U_CheckedEvent" Unchecked="U_UncheckedEvent" Name="UBox" Visibility="Visible"/>
+            <CheckBox Content="B" HorizontalAlignment="Left" Margin="212,190,0,0" VerticalAlignment="Top" FontFamily="Fonts/#Quicksand" Foreground="White" Checked="B_CheckedEvent" Unchecked="B_UncheckedEvent" Name="BBox" Visibility="Visible"/>
+            <CheckBox Content="R" HorizontalAlignment="Left" Margin="244,190,0,0" VerticalAlignment="Top" FontFamily="Fonts/#Quicksand" Foreground="White" Checked="R_CheckedEvent" Unchecked="R_UncheckedEvent" Name="RBox" Visibility="Visible"/>
+            <CheckBox Content="G" HorizontalAlignment="Left" Margin="276,190,0,0" VerticalAlignment="Top" FontFamily="Fonts/#Quicksand" Foreground="White" Checked="G_CheckedEvent" Unchecked="G_UncheckedEvent" Name="GBox" Visibility="Visible"/>
+            <CheckBox Content="C" HorizontalAlignment="Left" Margin="310,190,0,0" VerticalAlignment="Top" FontFamily="Fonts/#Quicksand" Foreground="White" Checked="C_CheckedEvent" Unchecked="C_UncheckedEvent" Name="CBox" Visibility="Visible"/>
+            <ComboBox HorizontalAlignment="Left" Margin="144,210,0,0" VerticalAlignment="Top" Width="120" Name="ColorFilter" SelectionChanged="ColorFilter_SelectionChanged"/>
+            <ComboBox HorizontalAlignment="Left" Margin="144,136,0,0" VerticalAlignment="Top" Width="120" Name="TypeFilter" SelectionChanged="TypeFilter_SelectionChanged"/>
         </Grid>
 
         <Grid Grid.Column="2"
