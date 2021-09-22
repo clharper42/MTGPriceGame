@@ -28,9 +28,9 @@ namespace MTGPriceGame
         public MainWindow()
         {
 
-            Program.Start();
+            //Program.Start();
             InitializeComponent();
-            Set_Images();
+            //Set_Images();
 
             ColorFilter.ItemsSource = Program.colorfilters;
             ColorFilter.SelectedItem = Program.colorfilters[0];
@@ -328,6 +328,32 @@ namespace MTGPriceGame
                 }
                 
             }
+        }
+
+        private void Button_Click_Start(object sender, RoutedEventArgs e)
+        {
+            startbtn.Content = "RESET";
+            rightbtn.IsEnabled = true;
+            leftbtn.IsEnabled = true;
+            TotalText.Text = "$0.00";
+
+            bool suc = Program.Get_Cards();
+            if (!suc)
+            {
+                CardImg1.Source = null;
+                CardImg1F1.Source = null;
+                CardImg1F2.Source = null;
+
+                CardImg2.Source = null;
+                CardImg2F1.Source = null;
+                CardImg2F2.Source = null;
+            }
+            else
+            {
+                Set_Images();
+            }
+
+
         }
     }
 }
